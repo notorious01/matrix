@@ -42,6 +42,17 @@ Matrix::~Matrix()
 
 //--------------------------------------------------------------------
 
+
+int Matrix::rows()
+{
+	return str;
+}
+
+int Matrix::columns()
+{
+	return col;
+}
+
 void Matrix::random()
 {
 	srand(time(NULL));
