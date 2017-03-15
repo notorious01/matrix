@@ -59,3 +59,15 @@ SCENARIO("multiplication", "[init]")
 	std::ifstream("A*B.txt") >> third;
 	REQUIRE(first * second == third);
 }
+
+SCENARIO("comparing", "[init]") {
+	Matrix first(5,5);
+	Matrix second(first);
+	bool same;
+	//Матрица из файле "A.txt" равна матрице из файла "C.txt"
+	std::ifstream("A.txt") >> first;
+	std::ifstream("C.txt") >> second;
+	if (second == first)
+		same = true;
+	REQUIRE(same == true);
+}
