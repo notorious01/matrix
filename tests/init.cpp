@@ -35,3 +35,14 @@ SCENARIO("addition", "[init]")
 	std::ifstream("A+B.txt") >> third;
 	REQUIRE(first + second == third);
 }
+
+
+SCENARIO("reading", "[init]")
+{
+	int init = 5;
+	Matrix first(init, init);
+	Matrix second(first);
+	std::ifstream("A.txt") >> first;
+	second.reading("A.txt");
+	REQUIRE(second == first);
+}
