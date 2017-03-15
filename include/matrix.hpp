@@ -25,4 +25,5 @@ public:
 	bool operator==(const Matrix&)const;
 	friend istream& operator >> (istream& ist, const Matrix& m);
 
+	
 };
