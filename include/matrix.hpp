@@ -1,13 +1,28 @@
 #include <iostream>
+#include <iomanip>
+#include <fstream>
 
-class matrix_t final
+using namespace std;
+
+class Matrix
 {
 private:
-    unsigned int rows_;
-    unsigned int columns_;
-    int** elements_;
+	int **matrix;
+	int str, col;
+
 public:
-    matrix_t() noexcept;
-    auto rows() -> unsigned int;
-    auto columns() -> unsigned int;
+	Matrix();
+	Matrix(int, int);
+	Matrix(Matrix &matr);
+	~Matrix();
+	friend ostream& operator << (ostream&,const Matrix&);
+	void writing(const char*);
+	void reading(const char*);
+	void random();
+	Matrix operator +(const Matrix&)const;
+	Matrix operator *(const Matrix&)const;
+	Matrix& operator =(const Matrix &);
+	bool operator==(const Matrix&)const;
+	friend istream& operator >> (istream& ist, const Matrix& m);
+
 };
