@@ -15,16 +15,6 @@ SCENARIO("with params", "[init]")
 	REQUIRE(temp.columns() == 10);
 }
 
-SCENARIO("destructor", "[init]")
-{
-	int init = 10;
-	Matrix first(init, init);
-	std::ifstream("A.txt") >> first;
-	first.Matrix::~Matrix();
-	REQUIRE(first.rows() == 0);
-	REQUIRE(first.columns() == 0);
-}
-
 SCENARIO("copy", "[init]")
 {
 	int init = 10;
