@@ -23,3 +23,15 @@ SCENARIO("copy", "[init]")
 	REQUIRE(copy.rows() == 10);
 	REQUIRE(copy.columns() == 10);
 }
+
+
+SCENARIO("addition", "[init]")
+{
+	int init = 5;
+	Matrix first(init, init);
+	Matrix second(first), third(first);
+	std::ifstream("A.txt") >> first;
+	std::ifstream("B.txt") >> second;
+	std::ifstream("A+B.txt") >> third;
+	REQUIRE(first + second == third);
+}
