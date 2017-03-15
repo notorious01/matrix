@@ -46,3 +46,16 @@ SCENARIO("reading", "[init]")
 	second.reading("A.txt");
 	REQUIRE(second == first);
 }
+
+
+
+SCENARIO("multiplication", "[init]")
+{
+	int init = 5;
+	Matrix first(init, init);
+	Matrix second(first), third(first);
+	std::ifstream("A.txt") >> first;
+	std::ifstream("B.txt") >> second;
+	std::ifstream("A*B.txt") >> third;
+	REQUIRE(first * second == third);
+}
