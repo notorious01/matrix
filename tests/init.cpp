@@ -71,3 +71,16 @@ SCENARIO("comparing", "[init]") {
 		same = true;
 	REQUIRE(same == true);
 }
+
+SCENARIO("writing", "[init]")
+{
+	int init = 5;
+	Matrix first(init, init);
+	Matrix second(first);
+	std::ifstream("A.txt") >> first;
+	first.writing("D.txt");
+	//"D.txt" is empty
+	second.reading("D.txt");
+	REQUIRE(second == first);
+}
+
