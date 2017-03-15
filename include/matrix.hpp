@@ -15,6 +15,9 @@ public:
 	Matrix(int, int);
 	Matrix(Matrix &matr);
 	~Matrix();
+	int rows();
+	int columns();
+	
 	friend ostream& operator << (ostream&,const Matrix&);
 	void writing(const char*);
 	void reading(const char*);
