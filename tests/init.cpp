@@ -84,3 +84,14 @@ SCENARIO("writing", "[init]")
 	REQUIRE(second == first);
 }
 
+
+SCENARIO("assignment", "[init]") {
+	int init = 5;
+	Matrix first(init, init);
+	Matrix second;
+	std::ifstream("A.txt") >> first;
+	second = first;
+	REQUIRE(second == first);
+}
+
+
