@@ -14,3 +14,12 @@ SCENARIO("with params", "[init]")
 	REQUIRE(temp.rows() == 10);
 	REQUIRE(temp.columns() == 10);
 }
+
+SCENARIO("copy", "[init]")
+{
+	int init = 10;
+	Matrix temp(init, init);
+	Matrix copy(temp);
+	REQUIRE(copy.rows() == 10);
+	REQUIRE(copy.columns() == 10);
+}
