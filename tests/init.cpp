@@ -94,4 +94,9 @@ SCENARIO("assignment", "[init]") {
 	REQUIRE(second == first);
 }
 
+SCENARIO("self assignment") {
+	Matrix a{ 3, 3 };
+	a = a;
+	REQUIRE( a == a );
+}
 
