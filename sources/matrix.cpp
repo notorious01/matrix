@@ -60,7 +60,7 @@ void Matrix::scan(string filename) const
 	ifstream infile;
 	infile.open(filename);
 	if (!infile.is_open())
-		cout << "Error! Please, try again!" << endl;
+		cout << "Error! Повторите!" << endl;
 	else
 	{
 		for (int i = 0; i < stroka; i++){
@@ -83,11 +83,11 @@ ostream& operator << (ostream& outfile, const Matrix& result)
 		return outfile;
 }
 
-bool Matrix::operator == (const Matrix& m2) const
+bool Matrix::operator == (const Matrix& matrix2) const
 {
 	for (int i = 0; i < stroka; i++){
 		for (int j = 0; j < stolb; j++){
-			if (matrix[i][j] == m2.matrix[i][j]){
+			if (matrix[i][j] == matrix2.matrix[i][j]){
 				return true;
 			}
 			return false;
@@ -95,33 +95,33 @@ bool Matrix::operator == (const Matrix& m2) const
 	}
 }
 
-Matrix Matrix::operator + (const Matrix& m2) const
+Matrix Matrix::operator + (const Matrix& matrix2) const
 {
-	if ((stolb != m2.stolb) || (stroka != m2.stroka)) {
+	if ((stolb != matrix2.stolb) || (stroka != matrix2.stroka)) {
 		cout << "Error!";
 	}
 	else {
 		Matrix result(stolb, stroka);
 		for (int i = 0; i < stroka; ++i){
 			for (int j = 0; j < stolb; ++j){
-				result.matrix[i][j] = matrix[i][j] + m2.matrix[i][j];
+				result.matrix[i][j] = matrix[i][j] + matrix2.matrix[i][j];
 			}
 		}
 		return result;
 	}
 }
 
-Matrix Matrix::operator * (const Matrix& m2) const
+Matrix Matrix::operator * (const Matrix& matrix2) const
 {
-	if (m2.stroka != stolb){
+	if (matrix2.stroka != stolb){
 		cout << "Error!";
 	}
 	else {
-		Matrix result(stroka, m2.stolb);
+		Matrix result(stroka, matrix2.stolb);
 		for (int i = 0; i < stroka; i++){
-			for (int j = 0; j < m2.stolb; j++){
+			for (int j = 0; j < matrix2.stolb; j++){
 				for (int k = 0; k < stolb; k++){
-					result.matrix[i][j] += matrix[i][k] * m2.matrix[k][j];
+					result.matrix[i][j] += matrix[i][k] * matrix2.matrix[k][j];
 				}
 			}
 		}
