@@ -35,28 +35,28 @@ SCENARIO("operator *") {
 	Matrix matrix1 (3, 3);
 	Matrix matrix2 (3, 3);
 	Matrix matrix3 (3, 3);	
-	std::ifstream("m1.txt") >> matrix1;
-	std::ifstream("m2.txt") >> matrix2;
-	std::ifstream("m1 x m2.txt") >> matrix3;
-	REQUIRE(matrix1 * matrix2 == m3);
+	std::ifstream("matrix1.txt") >> matrix1;
+	std::ifstream("matrix2.txt") >> matrix2;
+	std::ifstream("matrix1 x matrix2.txt") >> matrix3;
+	REQUIRE(matrix1 * matrix2 == matrix3);
 }
 
 SCENARIO("operator =") {
-	Matrix m1(3, 3);
-	Matrix m2 = m1;
-	REQUIRE(m1 == m2);
+	Matrix matrix1(3, 3);
+	Matrix matrix2 = matrix1;
+	REQUIRE(matrix1 == matrix2);
 }
 
 SCENARIO("operator ==") {
-	Matrix m1(3, 3);
-	Matrix m2(3, 3);
-	REQUIRE(m1 == m2);
+	Matrix matrix1(3, 3);
+	Matrix matrix2(3, 3);
+	REQUIRE(matrix1 == matrix2);
 }
 
 SCENARIO("scan") {
-	Matrix m1(3, 3);
-	Matrix m2(3, 3);
-	std::ifstream("m1.txt") >> m1;
-	m2.scan("m1.txt");
-	REQUIRE(m1 == m2);
+	Matrix matrix1(3, 3);
+	Matrix matrix2(3, 3);
+	std::ifstream("matrix1.txt") >> matrix1;
+	m2.scan("matrix1.txt")
+	REQUIRE(matrix1 == matrix2);
 }
