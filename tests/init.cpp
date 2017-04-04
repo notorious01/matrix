@@ -25,9 +25,9 @@ SCENARIO("operator +") {
 	Matrix matrix1 (3, 3);
 	Matrix matrix2 (3, 3);
 	Matrix matrix3 (3, 3);	
-	std::ifstream("m1.txt") >> matrix1;
-	std::ifstream("m2.txt") >> matrix2;
-	std::ifstream("m1+m2.txt") >> matrix3;
+	std::ifstream("matrix1.txt") >> matrix1;
+	std::ifstream("matrix2.txt") >> matrix2;
+	std::ifstream("matrix1+matrix2.txt") >> matrix3;
 	REQUIRE(matrix1 + matrix2 == matrix3);
 }
 
@@ -57,6 +57,6 @@ SCENARIO("scan") {
 	Matrix matrix1(3, 3);
 	Matrix matrix2(3, 3);
 	std::ifstream("matrix1.txt") >> matrix1;
-	ma2.scan("matrix1.txt");
+	matrix2.scan("matrix1.txt");
 	REQUIRE(matrix1 == matrix2);
 }
