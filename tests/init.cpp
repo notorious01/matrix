@@ -57,6 +57,6 @@ SCENARIO("scan") {
 	Matrix matrix1(3, 3);
 	Matrix matrix2(3, 3);
 	std::ifstream("matrix1.txt") >> matrix1;
-	mat2.scan("matrix1.txt");
+	ma2.scan("matrix1.txt");
 	REQUIRE(matrix1 == matrix2);
 }
