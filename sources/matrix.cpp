@@ -49,8 +49,8 @@ Matrix::~Matrix()
 
 istream& operator >> (istream& infile, Matrix& result)
 {
-		for (int i = 0; i < result.stroka; i++)
-			for (int j = 0; j < result.stolb; j++)
+		for (int i = 0; i < result.stroka_(); i++)
+			for (int j = 0; j < result.stolb_(); j++)
 				infile >> result.matrix[i][j];
 		return infile;
 }
@@ -74,8 +74,8 @@ void Matrix::scan(string filename) const
 
 ostream& operator << (ostream& outfile, const Matrix& result)
 {
-	for (int i = 0; i < result.stroka; i++){
-		for (int j = 0; j < result.stolb; j++){
+	for (int i = 0; i < result.stroka_(); i++){
+		for (int j = 0; j < result.stolb_(); j++){
 			outfile << result.matrix[i][j] << " ";
 		}
 	}
@@ -97,7 +97,7 @@ bool Matrix::operator == (const Matrix& matrix2) const
 
 Matrix Matrix::operator + (const Matrix& matrix2) const
 {
-	if ((stolb != matrix2.stolb) || (stroka != matrix2.stroka)) {
+	if ((stolb != matrix2.stolb_()) || (stroka != matrix2.stroka_())) {
 		cout << "Error!";
 	}
 	else {
@@ -117,9 +117,9 @@ Matrix Matrix::operator * (const Matrix& matrix2) const
 		cout << "Error!";
 	}
 	else {
-		Matrix result(stroka, matrix2.stolb);
+		Matrix result(stroka, matrix2.stolb_());
 		for (int i = 0; i < stroka; i++){
-			for (int j = 0; j < matrix2.stolb; j++){
+			for (int j = 0; j < matrix2.stolb_(); j++){
 				for (int k = 0; k < stolb; k++){
 					result.matrix[i][j] += matrix[i][k] * matrix2.matrix[k][j];
 				}
@@ -138,11 +138,11 @@ Matrix& Matrix::operator = (const Matrix& result)
 		delete[]matrix[i];
 	}
 	delete[]matrix;
-	matrix = new int*[result.stroka];
-	for (int i = 0; i < result.stroka; i++)
+	matrix = new int*[result.stroka_()];
+	for (int i = 0; i < result.stroka_(); i++)
 	{
-		matrix[i] = new int[result.stolb];
-		for (int j = 0; j < result.stolb; j++)
+		matrix[i] = new int[result.stolb_()];
+		for (int j = 0; j < result.stolb_(); j++)
 			matrix[i][j] = result.matrix[i][j];
 	}
 	stroka = result.stroka;
