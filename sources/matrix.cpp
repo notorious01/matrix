@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 
 int Matrix::stolb_() const
-{
+
 	return stolb;
 }
 
