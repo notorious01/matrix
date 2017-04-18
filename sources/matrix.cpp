@@ -97,7 +97,7 @@ bool Matrix::operator == (const Matrix& matrix2) const
 
 Matrix Matrix::operator + (const Matrix& matrix2) const
 {
-	if ((stolb != matrix2.stolb_()) || (stroka != matrix2.stroka_())) {
+	if ((stolb != matrix2.stolb_()) && (stroka != matrix2.stroka_())) {
 		cout << "Error!";
 	}
 	else {
