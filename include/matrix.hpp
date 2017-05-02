@@ -9,7 +9,7 @@ class Matrix
 private:
 	int stolb;
 	int stroka;
-	int **matrix;
+	int **mass;
 public:
 	Matrix();
 
