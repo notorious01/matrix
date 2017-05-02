@@ -2,20 +2,20 @@
 #include <catch.hpp>
 
 SCENARIO("default constructor") {
-	Matrix matrix;
-	REQUIRE(matrix.stroka_() == 0);
-	REQUIRE(matrix.stolb_() == 0);
+	Matrix matrix1;
+	REQUIRE(matrix1.stroka_() == 0);
+	REQUIRE(matrix1.stolb_() == 0);
 }
 
 SCENARIO("constructor with params") {
-	Matrix matrix(3, 3);
-	REQUIRE(matrix.stroka_() == 3);
-	REQUIRE(matrix.stolb_() == 3);
+	Matrix matrix1(3, 3);
+	REQUIRE(matrix1.stroka_() == 3);
+	REQUIRE(matrix1.stolb_() == 3);
 }
 
 SCENARIO("copy constructor") {
-	Matrix matrix (3, 3);	
-	Matrix copy(matrix);	
+	Matrix matrix1 (3, 3);	
+	Matrix copy(matrix1);	
 	REQUIRE(copy.stroka_() == 3);
 	REQUIRE(copy.stolb_() == 3);
 }
