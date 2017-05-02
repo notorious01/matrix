@@ -7,33 +7,33 @@ using namespace std;
 class Matrix
 {
 private:
-	int stolb;
-	int stroka;
-	int **mass;
+	int cols;
+	int rows;
+	int **Arr;
 public:
 	Matrix();
 
-	Matrix(int _stolb, int _stroka);
+	Matrix(int _cols, int _rows);
 
 	Matrix(const Matrix& result);
 
 	~Matrix();
 
-	int stolb_() const;
+	int cols_() const;
 
-	int stroka_() const;
+	int rows_() const;
 
-	void search(string filename);
+	void scan(string filename) const;
 
-	bool operator == (const Matrix& a) const;
+	bool operator == (const Matrix& m2) const;
 
-	Matrix operator + (const Matrix& a) const;
+	Matrix operator + (const Matrix& m2) const;
 
-	Matrix operator * (const Matrix& a) const;
+	Matrix operator * (const Matrix& m2) const;
 
-	Matrix& operator = (const Matrix& res);
+	Matrix& operator = (const Matrix& result);
 
 	friend ostream& operator << (ostream& outfile, const Matrix& result);
 
-	friend istream& operator >> (istream& infile, const Matrix& result);
+	friend istream& operator >> (istream& infile, Matrix& result);
 };
