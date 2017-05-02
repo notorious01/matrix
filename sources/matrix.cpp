@@ -1,57 +1,57 @@
 #include "matrix.hpp"
 
-int Matrix::stolb_() const
+int Matrix::cols_() const
 {
-	return stolb;
+	return cols;
 }
 
-int Matrix::stroka_() const
+int Matrix::rows_() const
 {
-	return stroka;
+	return rows;
 }
 
-Matrix::Matrix(): stolb(0), stroka(0), matrix(nullptr)
+Matrix::Matrix(): cols(0), rows(0), Arr(nullptr)
 {}
 
-Matrix::Matrix(int _stolb, int _stroka)
+Matrix::Matrix(int _cols, int _rows)
 {
-	stolb = _stolb;
-	stroka = _stroka;
-	matrix = new int*[stroka];
-	for (int i = 0; i < stroka; ++i){
-		matrix[i] = new int[stolb];
-		for (int j = 0; j < stolb; ++j){
-			matrix[i][j] = 0;
+	cols = _cols;
+	rows = _rows;
+	Arr = new int*[rows];
+	for (int i = 0; i < rows; ++i){
+		Arr[i] = new int[cols];
+		for (int j = 0; j < cols; ++j){
+			Arr[i][j] = 0;
 		}
 	}
 }
 
 Matrix::Matrix(const Matrix& result)
 {
-	stolb = result.stolb;
-	stroka = result.stroka;
-	matrix = new int*[stroka];
-	for (int i = 0; i < stroka; ++i){
-		matrix[i] = new int[stolb];
-		for (int j = 0; j < stolb; ++j){
-			matrix[i][j] = result.matrix[i][j];
+	cols = result.cols;
+	rows = result.rows;
+	Arr = new int*[rows];
+	for (int i = 0; i < rows; ++i){
+		Arr[i] = new int[cols];
+		for (int j = 0; j < cols; ++j){
+			Arr[i][j] = result.Arr[i][j];
 		}
 	}
 }
 
 Matrix::~Matrix()
 {
-	for (int i = 0; i < stroka; ++i){
-		delete[]matrix[i];
+	for (int i = 0; i < rows; ++i){
+		delete[]Arr[i];
 	}
-	delete[]matrix;
+	delete[]Arr;
 }
 
 istream& operator >> (istream& infile, Matrix& result)
 {
-		for (int i = 0; i < result.stroka_(); i++)
-			for (int j = 0; j < result.stolb_(); j++)
-				infile >> result.matrix[i][j];
+		for (int i = 0; i < result.rows; i++)
+			for (int j = 0; j < result.cols; j++)
+				infile >> result.Arr[i][j];
 		return infile;
 }
 
@@ -60,12 +60,12 @@ void Matrix::scan(string filename) const
 	ifstream infile;
 	infile.open(filename);
 	if (!infile.is_open())
-		cout << "Error! Повторите!" << endl;
+		cout << "Error! Please, try again!" << endl;
 	else
 	{
-		for (int i = 0; i < stroka; i++){
-			for (int j = 0; j < stolb; j++){
-				infile >> matrix[i][j];
+		for (int i = 0; i < rows; i++){
+			for (int j = 0; j < cols; j++){
+				infile >> Arr[i][j];
 			}
 		}
 	}
@@ -74,20 +74,20 @@ void Matrix::scan(string filename) const
 
 ostream& operator << (ostream& outfile, const Matrix& result)
 {
-	for (int i = 0; i < result.stroka_(); i++){
-		for (int j = 0; j < result.stolb_(); j++){
-			outfile << result.matrix[i][j] << " ";
+	for (int i = 0; i < result.rows; i++){
+		for (int j = 0; j < result.cols; j++){
+			outfile << result.Arr[i][j] << " ";
 		}
 	}
 		outfile << endl;
 		return outfile;
 }
 
-bool Matrix::operator == (const Matrix& matrix2) const
+bool Matrix::operator == (const Matrix& m2) const
 {
-	for (int i = 0; i < stroka; i++){
-		for (int j = 0; j < stolb; j++){
-			if (matrix[i][j] == matrix2.matrix[i][j]){
+	for (int i = 0; i < rows; i++){
+		for (int j = 0; j < cols; j++){
+			if (Arr[i][j] == m2.Arr[i][j]){
 				return true;
 			}
 			return false;
@@ -95,33 +95,33 @@ bool Matrix::operator == (const Matrix& matrix2) const
 	}
 }
 
-Matrix Matrix::operator + (const Matrix& matrix2) const
+Matrix Matrix::operator + (const Matrix& m2) const
 {
-	if ((stolb != matrix2.stolb_()) || (stroka != matrix2.stroka_())) {
+	if ((cols != m2.cols) || (rows != m2.rows)) {
 		cout << "Error!";
 	}
 	else {
-		Matrix result(stolb, stroka);
-		for (int i = 0; i < stroka; ++i){
-			for (int j = 0; j < stolb; ++j){
-				result.matrix[i][j] = matrix[i][j] + matrix2.matrix[i][j];
+		Matrix result(cols, rows);
+		for (int i = 0; i < rows; ++i){
+			for (int j = 0; j < cols; ++j){
+				result.Arr[i][j] = Arr[i][j] + m2.Arr[i][j];
 			}
 		}
 		return result;
 	}
 }
 
-Matrix Matrix::operator * (const Matrix& matrix2) const
+Matrix Matrix::operator * (const Matrix& m2) const
 {
-	if (matrix2.stroka != stolb){
+	if (m2.rows != cols){
 		cout << "Error!";
 	}
 	else {
-		Matrix result(stroka, matrix2.stolb_());
-		for (int i = 0; i < stroka; i++){
-			for (int j = 0; j < matrix2.stolb_(); j++){
-				for (int k = 0; k < stolb; k++){
-					result.matrix[i][j] += matrix[i][k] * matrix2.matrix[k][j];
+		Matrix result(rows, m2.cols);
+		for (int i = 0; i < rows; i++){
+			for (int j = 0; j < m2.cols; j++){
+				for (int k = 0; k < cols; k++){
+					result.Arr[i][j] += Arr[i][k] * m2.Arr[k][j];
 				}
 			}
 		}
@@ -134,18 +134,18 @@ Matrix& Matrix::operator = (const Matrix& result)
 	if (&result == this){
 		return *this;
 	}
-	for (int i = 0; i < stroka; i++){
-		delete[]matrix[i];
+	for (int i = 0; i < rows; i++){
+		delete[]Arr[i];
 	}
-	delete[]matrix;
-	matrix = new int*[result.stroka_()];
-	for (int i = 0; i < result.stroka_(); i++)
+	delete[]Arr;
+	Arr = new int*[result.rows];
+	for (int i = 0; i < result.rows; i++)
 	{
-		matrix[i] = new int[result.stolb_()];
-		for (int j = 0; j < result.stolb_(); j++)
-			matrix[i][j] = result.matrix[i][j];
+		Arr[i] = new int[result.cols];
+		for (int j = 0; j < result.cols; j++)
+			Arr[i][j] = result.Arr[i][j];
 	}
-	stroka = result.stroka;
-	stolb = result.stolb;
+	rows = result.rows;
+	cols = result.cols;
 	return *this;
 }
