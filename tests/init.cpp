@@ -2,61 +2,61 @@
 #include <catch.hpp>
 
 SCENARIO("default constructor") {
-	Matrix matrix1;
-	REQUIRE(matrix1.stroka_() == 0);
-	REQUIRE(matrix1.stolb_() == 0);
+	Matrix matrix;
+	REQUIRE(matrix.rows_() == 0);
+	REQUIRE(matrix.cols_() == 0);
 }
 
 SCENARIO("constructor with params") {
-	Matrix matrix1(3, 3);
-	REQUIRE(matrix1.stroka_() == 3);
-	REQUIRE(matrix1.stolb_() == 3);
+	Matrix matrix(3, 3);
+	REQUIRE(matrix.rows_() == 3);
+	REQUIRE(matrix.cols_() == 3);
 }
 
 SCENARIO("copy constructor") {
-	Matrix matrix1 (3, 3);	
-	Matrix copy(matrix1);	
-	REQUIRE(copy.stroka_() == 3);
-	REQUIRE(copy.stolb_() == 3);
+	Matrix matrix (3, 3);	
+	Matrix copy(matrix);	
+	REQUIRE(copy.rows_() == 3);
+	REQUIRE(copy.cols_() == 3);
 }
 
 
 SCENARIO("operator +") {
-	Matrix matrix1 (3, 3);
-	Matrix matrix2 (3, 3);
-	Matrix matrix3 (3, 3);	
-	std::ifstream("matrix1.txt") >> matrix1;
-	std::ifstream("matrix2.txt") >> matrix2;
-	std::ifstream("matrix1+matrix2.txt") >> matrix3;
-	REQUIRE(matrix1 + matrix2 == matrix3);
+	Matrix m1 (3, 3);
+	Matrix m2 (3, 3);
+	Matrix m3 (3, 3);	
+	std::ifstream("m1.txt") >> m1;
+	std::ifstream("m2.txt") >> m2;
+	std::ifstream("m1+m2.txt") >> m3;
+	REQUIRE(m1 + m2 == m3);
 }
 
 SCENARIO("operator *") {
-	Matrix matrix1 (3, 3);
-	Matrix matrix2 (3, 3);
-	Matrix matrix3 (3, 3);	
-	std::ifstream("matrix1.txt") >> matrix1;
-	std::ifstream("matrix2.txt") >> matrix2;
-	std::ifstream("matrix1 x matrix2.txt") >> matrix3;
-	REQUIRE(matrix1 * matrix2 == matrix3);
+	Matrix m1 (3, 3);
+	Matrix m2 (3, 3);
+	Matrix m3 (3, 3);	
+	std::ifstream("m1.txt") >> m1;
+	std::ifstream("m2.txt") >> m2;
+	std::ifstream("m1 x m2.txt") >> m3;
+	REQUIRE(m1 * m2 == m3);
 }
 
 SCENARIO("operator =") {
-	Matrix matrix1(3, 3);
-	Matrix matrix2 = matrix1;
-	REQUIRE(matrix1 == matrix2);
+	Matrix m1(3, 3);
+	Matrix m2 = m1;
+	REQUIRE(m1 == m2);
 }
 
 SCENARIO("operator ==") {
-	Matrix matrix1(3, 3);
-	Matrix matrix2(3, 3);
-	REQUIRE(matrix1 == matrix2);
+	Matrix m1(3, 3);
+	Matrix m2(3, 3);
+	REQUIRE(m1 == m2);
 }
 
 SCENARIO("scan") {
-	Matrix matrix1(3, 3);
-	Matrix matrix2(3, 3);
-	std::ifstream("matrix1.txt") >> matrix1;
-	matrix2.scan("matrix1.txt");
-	REQUIRE(matrix1 == matrix2);
+	Matrix m1(3, 3);
+	Matrix m2(3, 3);
+	std::ifstream("m1.txt") >> m1;
+	m2.scan("m1.txt");
+	REQUIRE(m1 == m2);
 }
